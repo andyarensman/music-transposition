@@ -1,0 +1,28 @@
+import React from 'react';
+import VF from 'vexflow';
+
+function MyComponentThree() {
+  const piano = new VF.EasyScore();
+  const system = piano.system;
+
+  piano.set({time: '4/4'});
+  piano.note('c4/q');
+  piano.note('d4/q');
+  piano.note('e4/q');
+  piano.note('f4/q');
+
+  system.addStave({
+    voices: [
+      piano.voice(piano.notes())
+    ]
+  }).addClef('treble').addTimeSignature('4/4');
+
+  const svg = piano.svg;
+  return (
+    <svg id="piano-score" width="500" height="200">
+      {svg}
+    </svg>
+  );
+}
+
+export default MyComponentThree;
